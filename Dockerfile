@@ -1,33 +1,28 @@
-FROM ubuntu:18.04
+FROM ubuntu:latest
 MAINTAINER dhna
 
-# Add latest Tex Live PPA
-RUN apt-get update && \
-    apt-get install --no-install-suggests --no-install-recommends -y gnupg && \
-    # Add sources
-    echo "deb http://ppa.launchpad.net/jonathonf/texlive/ubuntu bionic main " >> /etc/apt/sources.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4AB0F789CBA31744CC7DA76A8CF63AD3F06FC659 && \
-    apt-get autoremove -y && \
-    apt-get clean all && \
-    rm -rf /var/lib/apt/lists/*
+COPY texlive.profile texlive.profile
 
-# Install TexLive and other utilities
+# Install TexLive
 RUN apt-get update && \
-    # texlive-latex-extra settings
-    echo "12\n9\n" | \
+    # Dependencies and Utilities
     apt-get install --no-install-suggests --no-install-recommends -y \
-        # TeX Live essentials
-        texlive-base \
-        texlive-xetex \
-        # Utilities
-        make \
-        latexmk \
-        wget \
-        && \
+        gnupg perl python make wget && \
+    # Download installer
+    wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
+    tar -zxvf install-tl-unx.tar.gz && \
+    rm install-tl-unx.tar.gz && \
+    # Install TexLive
+    cd install-tl*/ && \
+    ./install-tl --profile=/texlive.profile && \
+    # Clean up
+    cd / && rm -rf install-tl* && \
     apt-get autoremove -y && \
     apt-get clean all && \
     rm -rf /var/lib/apt/lists/*
 
-# Initialize tlmgr to allow installing other packages
-RUN tlmgr init-usertree && \
-    tlmgr update --all
+ENV PATH="/usr/local/texlive/2019/bin/x86_64-linux:${PATH}"
+
+# Install tlmgr packages
+RUN tlmgr update --all && \
+    tlmgr install latexmk texliveonfly
