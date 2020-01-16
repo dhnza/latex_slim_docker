@@ -7,7 +7,7 @@ COPY texlive.profile texlive.profile
 RUN apt-get update && \
     # Dependencies and Utilities
     apt-get install --no-install-suggests --no-install-recommends -y \
-        gnupg perl python make wget && \
+        gnupg libfontconfig perl python make wget && \
     # Download installer
     wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
     tar -zxvf install-tl-unx.tar.gz && \
