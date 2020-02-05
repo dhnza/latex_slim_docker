@@ -5,7 +5,8 @@ if [[ "$1" == "-h" || -z "$1"  ]]; then
   echo "\nFirst command line arg: seach_location"
   echo "\n\t search_location: Folder location for the spell checker to search "
   echo "\n Second command line arg: save_location"
-  echo "\n\t save_location: Folder location for the spell checker to save output, if it doesnt exist we will create it"
+  echo "\n\t save_location: Folder location for the spell checker to save output"
+  echo "\n\t\t ****if it does not exist we will create it****"
   echo "\n\n\n"
   exit 0
 fi 
