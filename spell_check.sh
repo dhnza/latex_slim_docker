@@ -1,8 +1,7 @@
 #!/bin/bash
-files1=$1'*.tex'
+files=`find $1  -name "*.tex" -or -name "*.xtx" `
 echo $files
-
-for file in files1; 
+for file in $files; 
     do
         echo "FILE: $file"
         echo "**** SPELL-CHECK ****"
