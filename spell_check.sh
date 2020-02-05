@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# first argument is the repo location
+# second argument is the save location
 files=`find $1  -name "*.tex" -or -name "*.xtx" `
 echo $files
 for file in $files; 
@@ -11,5 +14,5 @@ for file in $files;
         echo "**** PROSELINT ****"
         proselint "$file" || true
         echo ""
-     done | tee 'check_text.txt'
+     done | tee $2'check_text.txt'
 
