@@ -15,7 +15,7 @@ RUN apt-get update && \
     # Install TexLive
     cd install-tl*/ && \
     ./install-tl --profile=/texlive.profile && \
-    # spell checker
+    # spell checker dependencies
     apt-get install --no-install-suggests --no-install-recommends -y \
     aspell aspell-en python3-proselint python3-pkg-resources && \
     # Clean up
@@ -28,9 +28,12 @@ ENV PATH="/usr/local/texlive/2019/bin/x86_64-linux:${PATH}"
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
+# adds spell checker script to the image
 ADD spell_check.sh /spell_check.sh
 
 # Install tlmgr packages
 RUN tlmgr update --self && \
     tlmgr update --all && \
-    tlmgr install latexmk texliveonfly letltxmacro textpos isodate titlesec substr enumitem   
+    tlmgr install latexmk texliveonfly &&\
+    # spell check packages
+    tlmgr install letltxmacro textpos isodate titlesec substr enumitem   
