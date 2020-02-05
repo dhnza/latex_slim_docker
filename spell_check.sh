@@ -3,7 +3,7 @@
 # first argument is the repo location
 # second argument is the save location
 files=`find $1  -name "*.tex" -or -name "*.xtx" `
-echo $files
+mkdir $2
 for file in $files; 
     do
         echo "FILE: $file"
