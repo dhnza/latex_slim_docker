@@ -1,7 +1,7 @@
 #!/bin/bash
 
-
-if [ "$1" == "-h" ]; then
+# give help if -h or no arguments given
+if [[ "$1" == "-h" || -z "$1"  ]]; then
   echo "\nFirst command line arg: seach_location"
   echo "\n\t search_location: Folder location for the spell checker to search "
   echo "\n Second command line arg: save_location"
@@ -9,14 +9,6 @@ if [ "$1" == "-h" ]; then
   echo "\n\n\n"
   exit 0
 fi 
-
-# check if seach location is defined, 
-# if it is not we exit
-if [ -z "$1" ]
-  then 
-    echo "No location given to check "
-    exit 1
-fi    
 
 # check if save location is defined, 
 # if it is not we will save to ~/output
