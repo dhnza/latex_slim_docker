@@ -31,5 +31,6 @@ ENV LANG=C.UTF-8
 ADD spell_check.sh /spell_check.sh
 
 # Install tlmgr packages
-RUN tlmgr update --all && \
-    tlmgr install latexmk texliveonfly
+RUN tlmgr update --self && \
+    tlmgr update --all && \
+    tlmgr install latexmk texliveonfly letltxmacro textpos isodate titlesec substr enumitem   
