@@ -21,7 +21,7 @@ RUN apt-get update && \
     apt-get clean all && \
     rm -rf /var/lib/apt/lists/*
 
-ENV PATH="/usr/local/texlive/2019/bin/x86_64-linux:${PATH}"
+ENV PATH="/usr/local/texlive/latest/bin/x86_64-linux:${PATH}"
 
 # Install tlmgr packages
 RUN tlmgr update --all && \
