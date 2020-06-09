@@ -30,9 +30,13 @@ To compile a document, simply run
 
 It even supports `latexmk`.
 ```
- $ texliveonfly --compiler=latexmk --arguments='-shell-escape -pdf' filename.tex
+ $ texliveonfly --compiler=latexmk --arguments='-shell-escape -interaction=nonstopmode -pdf' filename.tex
 ```
 
+You can use `texliveonfly` to retrieve the list of `tlmgr` packages needed by a document.
+```
+ $ texliveonfly filename.tex 2>&1 | awk '/^texliveonfly.*install LaTex package/ {print $NF}'
+```
 
 ## DockerHub
 
