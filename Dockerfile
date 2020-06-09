@@ -1,13 +1,12 @@
-FROM ubuntu:latest
+FROM alpine:latest
 MAINTAINER dhna
 
 COPY texlive.profile texlive.profile
 
 # Install TexLive
-RUN apt-get update && \
-    # Dependencies and Utilities
-    apt-get install --no-install-suggests --no-install-recommends -y \
-        gnupg libfontconfig perl python make wget && \
+RUN apk add --no-cache \
+    # Dependencies and utilities
+        fontconfig make perl python2 wget && \
     # Download installer
     wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
     tar -zxvf install-tl-unx.tar.gz && \
@@ -17,11 +16,9 @@ RUN apt-get update && \
     ./install-tl --profile=/texlive.profile && \
     # Clean up
     cd / && rm -rf install-tl* && \
-    apt-get autoremove -y && \
-    apt-get clean all && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/cache/apk/*
 
-ENV PATH="/usr/local/texlive/latest/bin/x86_64-linux:${PATH}"
+ENV PATH="/usr/local/texlive/latest/bin/x86_64-linuxmusl:${PATH}"
 
 # Install tlmgr packages
 RUN tlmgr update --all && \
