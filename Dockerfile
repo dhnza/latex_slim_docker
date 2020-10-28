@@ -6,7 +6,7 @@ COPY texlive.profile texlive.profile
 # Install TexLive
 RUN apk add --no-cache \
     # Dependencies and utilities
-        fontconfig make perl python2 wget && \
+        fontconfig make perl python2 wget xz && \
     # Download installer
     wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
     tar -zxvf install-tl-unx.tar.gz && \
