@@ -6,7 +6,7 @@ TEXMFLOCAL /usr/local/texlive/texmf-local
 TEXMFSYSCONFIG /usr/local/texlive/latest/texmf-config
 TEXMFSYSVAR /usr/local/texlive/latest/texmf-var
 TEXMFVAR ~/.texlive/texmf-var
-binary_x86_64-linux 1
+binary_x86_64-linuxmusl 1
 collection-basic 1
 collection-latex 1
 collection-latexrecommended 1

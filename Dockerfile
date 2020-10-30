@@ -13,7 +13,7 @@ RUN apk add --no-cache \
     rm install-tl-unx.tar.gz && \
     # Install TexLive
     cd install-tl*/ && \
-    ./install-tl --profile=/texlive.profile && \
+    ./install-tl --profile=/texlive.profile --force-platform x86_64-linuxmusl && \
     # Clean up
     cd / && rm -rf install-tl* && \
     rm -rf /var/cache/apk/*
