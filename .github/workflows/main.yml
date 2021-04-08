@@ -1,0 +1,18 @@
+name: CI
+
+# Trigger CI every Monday at 12:21 p.m.
+on:
+  schedule:
+    - cron:  '21 12 * * 1'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger build
+
+      env:
+        POST: ${{ secrets.DOCKERHUB_POST }}
+
+      run: curl -d '' $POST &> /dev/null
