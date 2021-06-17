@@ -1,7 +1,10 @@
 name: CI
 
-# Trigger CI every Monday at 12:21 p.m.
 on:
+  # Trigger CI on push to any branch
+  push:
+
+  # Trigger CI every Monday at 12:21 p.m.
   schedule:
     - cron:  '21 12 * * 1'
 
@@ -9,10 +12,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [master, minimal]
+        include:
+          - branch: master
+            tag: latest
+          - branch: minimal
+            tag: minimal
+
     steps:
-    - name: Trigger build
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-      env:
-        POST: ${{ secrets.DOCKERHUB_POST }}
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      run: curl -d '' $POST &> /dev/null
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: https://github.com/${{ github.repository }}.git#${{ matrix.branch }}
+          push: true
+          tags: dhna/latex_slim:${{ matrix.tag }}
+
+
+
