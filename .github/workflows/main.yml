@@ -39,6 +39,3 @@ jobs:
           context: https://github.com/${{ github.repository }}.git#${{ matrix.branch }}
           push: true
           tags: dhna/latex_slim:${{ matrix.tag }}
-
-
-

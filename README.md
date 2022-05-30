@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/dhnza/latex_slim_docker/actions/workflows/main.yml/badge.svg)](https://github.com/dhnza/latex_slim_docker/actions/workflows/main.yml)
 
-This is a lightwieght Docker image for compiling Latex documents. It is based
+This is a lightweight Docker image for compiling Latex documents. It is based
 on the [latest Alpine image](https://hub.docker.com/_/alpine). It includes an
 [official TexLive installation](https://www.tug.org/texlive/quickinstall.html).
 
