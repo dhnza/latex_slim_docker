@@ -1,8 +1,8 @@
-# latex_slim_docker
+# Minimal LaTeX images
 
 [![CI](https://github.com/dhnza/latex_slim_docker/actions/workflows/main.yml/badge.svg)](https://github.com/dhnza/latex_slim_docker/actions/workflows/main.yml)
 
-This is a lightweight Docker image for compiling Latex documents. It is based
+This is a lightweight Docker image for compiling LaTeX documents. It is based
 on the [latest Alpine image](https://hub.docker.com/_/alpine). It includes an
 [official TexLive installation](https://www.tug.org/texlive/quickinstall.html).
 
@@ -19,11 +19,11 @@ Additional packages can be installed with `tlmgr`
  $ tlmgr install <package-name>
 ```
 
-### Automatic Latex Package Installation
+### Automatic LaTeX Package Installation
 
 This images comes with `texliveonfly`, a Python script that will automatically
-download Latex packages required to compile a document. It is a wrapper around
-the Latex compilers.
+download LaTeX packages required to compile a document. It is a wrapper around
+the LaTeX compilers.
 
 To compile a document, simply run
 ```
@@ -39,6 +39,15 @@ You can use `texliveonfly` to retrieve the list of `tlmgr` packages needed by a 
 ```
  $ texliveonfly filename.tex 2>&1 | awk '/^texliveonfly.*install LaTex package/ {print $NF}'
 ```
+
+## Tags
+
+The images come in two variants:
+- `latest`
+- `minimal`
+
+The `latest` tag includes the LaTeX collections listed above. The `minimal`
+tag includes all the same collections, except for `collection-mathscience`.
 
 ## DockerHub
 
