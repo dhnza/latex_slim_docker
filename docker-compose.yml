@@ -1,0 +1,11 @@
+services:
+  latest:
+    image: dhna/latex_slim:latest
+    build:
+      context: ./latest
+      dockerfile: ../Dockerfile
+  minimal:
+    image: dhna/latex_slim:minimal
+    build: 
+      context: ./minimal
+      dockerfile: ../Dockerfile
