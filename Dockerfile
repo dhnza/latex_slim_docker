@@ -7,8 +7,6 @@ COPY texlive.profile texlive.profile
 RUN apk add --no-cache \
     # Dependencies and utilities
         ca-certificates fontconfig make perl python3 wget xz && \
-    # Alias python to python3
-    ln -s /usr/bin/python3 /usr/bin/python && \
     # Download installer
     wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
     tar -zxvf install-tl-unx.tar.gz && \
