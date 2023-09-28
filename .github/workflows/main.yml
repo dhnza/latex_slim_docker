@@ -18,8 +18,13 @@ jobs:
         tag: [latest, minimal]
 
     steps:
+      - name: Create network without IPv6
+        run: docker network create --ipv6=false disable_ipv6
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+        with:
+          driver-opts: network=disable_ipv6
 
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -29,6 +34,7 @@ jobs:
 
       - name: Check out repository
         uses: actions/checkout@v3
+
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v4
